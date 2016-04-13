@@ -19,6 +19,9 @@ repositories {
     mavenCentral()
 
     maven {
+        url "http://dl.bintray.com/ethereum/maven"
+    }
+    maven {
         url "https://oss.jfrog.org/libs-snapshot"
     }
 }
@@ -32,9 +35,9 @@ dependencies {
     compile "org.apache.commons:commons-lang3:3.3.2"
     compile 'org.projectlombok:lombok:1.14.8'
     compile "com.google.guava:guava:18.0"
-    compile "com.github.briandilley.jsonrpc4j:jsonrpc4j:1.2.0"
+    compile "com.github.briandilley.jsonrpc4j:jsonrpc4j:1.1"
 
-    compile ("org.ethereum:ethereumj-core:1.0.0-stage-SNAPSHOT"){
+    compile ("org.ethereum:ethereumj-core:1.2.0-SNAPSHOT"){
         exclude group: "log4j"
         exclude group: "org.slf4j", module: "log4j-over-slf4j"
         exclude group: "org.slf4j", module: "slf4j-log4j12"
