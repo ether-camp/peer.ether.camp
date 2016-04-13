@@ -1,18 +1,13 @@
-package com.ethercamp.vmtrace.config;
+package com.ethercamp.peer.config;
 
-import com.ethercamp.vmtrace.rest.JsonRpc;
-import com.ethercamp.vmtrace.rest.JsonRpcImpl;
-import com.ethercamp.vmtrace.sevice.console.crash.plugin.js.JSLanguage;
+import com.ethercamp.peer.rest.JsonRpcBak;
+import com.ethercamp.peer.rest.JsonRpcServiceImpl;
+import com.ethercamp.peer.sevice.console.crash.plugin.js.JSLanguage;
 import com.googlecode.jsonrpc4j.spring.JsonServiceExporter;
-import org.crsh.spring.SpringBootstrap;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.ethereum.jsonrpc.JsonRpc;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.HandlerInterceptor;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-
-import java.util.List;
 
 @Configuration
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
@@ -27,8 +22,8 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 //    }
 
     @Bean
-    JsonRpcImpl myService() {
-        return new JsonRpcImpl();
+    JsonRpcServiceImpl myService() {
+        return new JsonRpcServiceImpl();
     }
 
     @Bean(name = "/")

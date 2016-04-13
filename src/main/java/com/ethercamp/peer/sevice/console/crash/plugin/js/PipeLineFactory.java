@@ -17,7 +17,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-package com.ethercamp.vmtrace.sevice.console.crash.plugin.js;
+package com.ethercamp.peer.sevice.console.crash.plugin.js;
 
 import org.crsh.shell.ErrorKind;
 import org.crsh.shell.impl.command.ShellSession;

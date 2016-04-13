@@ -1,4 +1,4 @@
-package com.ethercamp.vmtrace.js;
+package com.ethercamp.peer.js;
 
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
