@@ -25,10 +25,29 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 import java.io.IOException;
 
+/**
+ * Class which runs a node with the predefined blockchain for testing with JSON-RPC
+ * test suite: https://github.com/ethereum/rpc-tests
+ *
+ *  git clone https://github.com/ethereum/rpc-tests
+ *  cd rpc-tests
+ *  git submodule update --init
+ *  npm install
+ *  make test
+ *  sudo npm install -g mocha
+ *  # edit lib/config.js: comment all hosts and IPC, add your own host
+ *  rm test/1_testConnection.js # jsonrpc4j don't like simple connection attempt
+ *  mocha -d test/
+ *  mocha -d test/<test>.js
+ */
 @SpringBootApplication
 @EnableScheduling
 public class TestApplication {
 
+    /**
+     * bcRPC_API_Test.json at older revision requires older-style Frontier
+     * signature verification (outdated test)
+     */
     public static class OldFrontierBCConfig extends AbstractNetConfig {
         public OldFrontierBCConfig() {
             add(0, new FrontierConfig() {
@@ -42,6 +61,7 @@ public class TestApplication {
 
     public static void main(String[] args) throws IOException {
         SystemProperties.CONFIG.setBlockchainConfig(new OldFrontierBCConfig());
+        // rpc.json genesis created from bcRPC_API_Test.json
         SystemProperties.CONFIG.overrideParams(
                 "genesis", "rpc.json",
                 "database.dir", "no-dir");
@@ -63,6 +83,7 @@ public class TestApplication {
             }
         }
 
+        // need a predefined coinbase account
         JsonRpcServiceImpl rpcService = context.getBean(JsonRpcServiceImpl.class);
         rpcService.addAccount(ECKey.fromPrivate(Hex.decode("45a915e4d060149eb4365960e6a7a45f334393093061116b197e3240065ff2d8")));
     }
