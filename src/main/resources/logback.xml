@@ -5,13 +5,13 @@
         <file>logs/ethereum.log</file>
 
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-            <level>INFO</level>
+            <level>DEBUG</level>
         </filter>
 
 
         <append>true</append>
         <encoder>
-            <pattern>%-5relative %-5level %logger{35} - %msg%n</pattern>
+            <pattern>%date{HH:mm:ss.SSS} %-5level [%logger{35}] %msg%n</pattern>
         </encoder>
 
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
@@ -26,11 +26,11 @@
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
 
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-            <level>DEBUG</level>
+            <level>INFO</level>
         </filter>
 
         <encoder>
-            <pattern>%-5relative %-5level %logger{35} - %msg%n</pattern>
+            <pattern>%date{HH:mm:ss.SSS} %-5level [%logger{35}] %msg%n</pattern>
         </encoder>
     </appender>
 
@@ -40,35 +40,28 @@
     </root>
 
     <logger level="INFO" name="org.springframework.web.servlet.DispatcherServlet"/>
-    <logger level="INFO" name="blockchain"/>
-    <logger level="INFO" name="blockqueue"/>
-    <logger level="INFO" name="ethereum-service"/>
-    <logger level="INFO" name="report"/>
     <logger level="DEBUG" name="general"/>
-    <logger level="INFO" name="system"/>
-    <logger level="INFO" name="facade"/>
-    <logger level="INFO" name="block"/>
+    <logger level="DEBUG" name="net"/>
+    <logger level="INFO" name="ethereum-service"/>
+    <logger level="ERROR" name="wire"/>
+    <logger level="DEBUG" name="discover"/>
+    <logger level="DEBUG" name="db"/>
+    <logger level="TRACE" name="sync"/>
     <logger level="DEBUG" name="jsonrpc"/>
 
-    <logger level="ERROR" name="wallet"/>
-    <logger level="INFO" name="net"/>
-    <logger level="INFO" name="sync"/>
-    <logger level="INFO" name="db"/>
+    <logger level="DEBUG" name="blockqueue"/>
+    <logger level="INFO" name="repository"/>
+    <logger level="INFO" name="blockchain"/>
+    <logger level="DEBUG" name="mine"/>
     <logger level="INFO" name="discover"/>
-    <logger level="ERROR" name="peermonitor"/>
     <logger level="ERROR" name="java.nio"/>
     <logger level="ERROR" name="io.netty"/>
     <logger level="ERROR" name="wire"/>
     <logger level="ERROR" name="VM"/>
-    <logger level="ERROR" name="main"/>
     <logger level="ERROR" name="trie"/>
     <logger level="ERROR" name="state"/>
-    <logger level="ERROR" name="repository"/>
-    <logger level="ERROR" name="txs"/>
-    <logger level="ERROR" name="ui"/>
-    <logger level="ERROR" name="gas"/>
-    <logger level="ERROR" name="vmtrace"/>
     <logger level="ERROR" name="execute"/>
+    <logger level="ERROR" name="rlp"/>
 
 
 </configuration>
