@@ -37,7 +37,7 @@ dependencies {
     compile "com.google.guava:guava:18.0"
     compile "com.github.briandilley.jsonrpc4j:jsonrpc4j:1.1"
 
-    compile ("org.ethereum:ethereumj-core:1.2.0-SNAPSHOT"){
+    compile ("org.ethereum:ethereumj-core:1.2.+"){
         exclude group: "log4j"
         exclude group: "org.slf4j", module: "log4j-over-slf4j"
         exclude group: "org.slf4j", module: "slf4j-log4j12"
@@ -66,4 +66,8 @@ bootRun {
     if ( project.hasProperty('jvmArgs') ) {
         jvmArgs project.jvmArgs.split('\\s+')
     }
+}
+
+springBoot {
+    mainClass = "com.ethercamp.peer.Application"
 }
