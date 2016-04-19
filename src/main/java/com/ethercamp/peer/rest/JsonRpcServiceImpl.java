@@ -16,16 +16,9 @@ import javax.annotation.PostConstruct;
 @JsonRpcService("/jr")
 public class JsonRpcServiceImpl extends JsonRpcImpl {
 
-    @PostConstruct
-    private void init() {
-        System.out.println("############  JsonRpcServiceImpl.init");
-    }
-
-
     public Account addAccount(ECKey key) {
         return super.addAccount(key);
     }
-
 
         @Override
     public String eth_protocolVersion() {

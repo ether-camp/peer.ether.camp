@@ -1,6 +1,5 @@
 package com.ethercamp.peer.config;
 
-import com.ethercamp.peer.rest.JsonRpcBak;
 import com.ethercamp.peer.rest.JsonRpcServiceImpl;
 import com.ethercamp.peer.sevice.console.crash.plugin.js.JSLanguage;
 import com.googlecode.jsonrpc4j.spring.JsonServiceExporter;
