@@ -60,9 +60,9 @@ public class TestApplication {
     }
 
     public static void main(String[] args) throws IOException {
-        SystemProperties.CONFIG.setBlockchainConfig(new OldFrontierBCConfig());
+        SystemProperties.getDefault().setBlockchainConfig(new OldFrontierBCConfig());
         // rpc.json genesis created from bcRPC_API_Test.json
-        SystemProperties.CONFIG.overrideParams(
+        SystemProperties.getDefault().overrideParams(
                 "genesis", "rpc.json",
                 "database.dir", "no-dir");
         ConfigurableApplicationContext context =
