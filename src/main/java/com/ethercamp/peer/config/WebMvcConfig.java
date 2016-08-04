@@ -4,8 +4,10 @@ import com.ethercamp.peer.rest.JsonRpcServiceImpl;
 import com.ethercamp.peer.sevice.console.crash.plugin.js.JSLanguage;
 import com.googlecode.jsonrpc4j.spring.JsonServiceExporter;
 import org.ethereum.jsonrpc.JsonRpc;
+import org.springframework.boot.context.embedded.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 @Configuration
@@ -31,6 +33,17 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
         ret.setService(myService());
         ret.setServiceInterface(JsonRpc.class);
         return ret;
+    }
+
+    /**
+     * With this code we aren't required to pass explicit "Content-Type: application/json" in curl.
+     * Found at https://github.com/spring-projects/spring-boot/issues/4782
+     */
+    @Bean
+    public FilterRegistrationBean registration(HiddenHttpMethodFilter filter) {
+        FilterRegistrationBean registration = new FilterRegistrationBean(filter);
+        registration.setEnabled(false);
+        return registration;
     }
 
     @Bean
