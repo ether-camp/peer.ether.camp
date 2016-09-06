@@ -12,11 +12,11 @@ import org.ethereum.core.ImportResult;
 import org.ethereum.core.Transaction;
 import org.ethereum.crypto.ECKey;
 import org.ethereum.facade.EthereumImpl;
-import org.ethereum.jsontestsuite.BlockTestCase;
-import org.ethereum.jsontestsuite.BlockTestSuite;
-import org.ethereum.jsontestsuite.JSONReader;
-import org.ethereum.jsontestsuite.builder.BlockBuilder;
-import org.ethereum.jsontestsuite.model.BlockTck;
+//import org.ethereum.jsontestsuite.BlockTestCase;
+//import org.ethereum.jsontestsuite.BlockTestSuite;
+//import org.ethereum.jsontestsuite.JSONReader;
+//import org.ethereum.jsontestsuite.builder.BlockBuilder;
+//import org.ethereum.jsontestsuite.model.BlockTck;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -60,31 +60,31 @@ public class TestApplication {
     }
 
     public static void main(String[] args) throws IOException {
-        SystemProperties.getDefault().setBlockchainConfig(new OldFrontierBCConfig());
-        // rpc.json genesis created from bcRPC_API_Test.json
-        SystemProperties.getDefault().overrideParams(
-                "genesis", "rpc.json",
-                "database.dir", "no-dir");
-        ConfigurableApplicationContext context =
-                SpringApplication.run(new Object[]{DefaultConfig.class, Application.class}, args);
-        EthereumImpl ethereum = context.getBean(EthereumImpl.class);
-        String json = JSONReader.loadJSONFromCommit("BlockchainTests/bcRPC_API_Test.json", "c58d3dce3f64f7ee1f711054fc464202bb0b7d64");
-        BlockTestSuite testSuite = new BlockTestSuite(json);
-        BlockTestCase aCase = testSuite.getTestCases().get("RPC_API_Test");
-        ((BlockchainImpl) ethereum.getBlockchain()).byTest = true;
-
-        for (BlockTck blockTck : aCase.getBlocks()) {
-            Block block = BlockBuilder.build(blockTck.getBlockHeader(),
-                    blockTck.getTransactions(),
-                    blockTck.getUncleHeaders());
-            ImportResult result = ((BlockchainImpl) ethereum.getBlockchain()).tryToConnect(block);
-            if (result != ImportResult.IMPORTED_BEST && result != ImportResult.IMPORTED_NOT_BEST) {
-                throw new RuntimeException("Can't import test block: " + result + "\n" + block);
-            }
-        }
-
-        // need a predefined coinbase account
-        JsonRpcServiceImpl rpcService = context.getBean(JsonRpcServiceImpl.class);
-        rpcService.addAccount(ECKey.fromPrivate(Hex.decode("45a915e4d060149eb4365960e6a7a45f334393093061116b197e3240065ff2d8")));
+//        SystemProperties.getDefault().setBlockchainConfig(new OldFrontierBCConfig());
+//        // rpc.json genesis created from bcRPC_API_Test.json
+//        SystemProperties.getDefault().overrideParams(
+//                "genesis", "rpc.json",
+//                "database.dir", "no-dir");
+//        ConfigurableApplicationContext context =
+//                SpringApplication.run(new Object[]{DefaultConfig.class, Application.class}, args);
+//        EthereumImpl ethereum = context.getBean(EthereumImpl.class);
+//        String json = JSONReader.loadJSONFromCommit("BlockchainTests/bcRPC_API_Test.json", "c58d3dce3f64f7ee1f711054fc464202bb0b7d64");
+//        BlockTestSuite testSuite = new BlockTestSuite(json);
+//        BlockTestCase aCase = testSuite.getTestCases().get("RPC_API_Test");
+//        ((BlockchainImpl) ethereum.getBlockchain()).byTest = true;
+//
+//        for (BlockTck blockTck : aCase.getBlocks()) {
+//            Block block = BlockBuilder.build(blockTck.getBlockHeader(),
+//                    blockTck.getTransactions(),
+//                    blockTck.getUncleHeaders());
+//            ImportResult result = ((BlockchainImpl) ethereum.getBlockchain()).tryToConnect(block);
+//            if (result != ImportResult.IMPORTED_BEST && result != ImportResult.IMPORTED_NOT_BEST) {
+//                throw new RuntimeException("Can't import test block: " + result + "\n" + block);
+//            }
+//        }
+//
+//        // need a predefined coinbase account
+//        JsonRpcServiceImpl rpcService = context.getBean(JsonRpcServiceImpl.class);
+//        rpcService.addAccount(ECKey.fromPrivate(Hex.decode("45a915e4d060149eb4365960e6a7a45f334393093061116b197e3240065ff2d8")));
     }
 }
