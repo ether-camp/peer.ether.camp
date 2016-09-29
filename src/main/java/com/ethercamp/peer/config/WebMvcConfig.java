@@ -3,8 +3,12 @@ package com.ethercamp.peer.config;
 import com.ethercamp.peer.rest.JsonRpcServiceImpl;
 import com.ethercamp.peer.sevice.console.crash.plugin.js.JSLanguage;
 import com.googlecode.jsonrpc4j.spring.JsonServiceExporter;
+import org.ethereum.core.BlockchainImpl;
 import org.ethereum.jsonrpc.JsonRpc;
+import org.ethereum.listener.CompositeEthereumListener;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.embedded.FilterRegistrationBean;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
@@ -22,9 +26,13 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 //        super.addInterceptors(registry);
 //    }
 
+    @Autowired
+    ApplicationContext applicationContext;
+
     @Bean
     JsonRpcServiceImpl myService() {
-        return new JsonRpcServiceImpl();
+        return new JsonRpcServiceImpl(applicationContext.getBean(BlockchainImpl.class),
+                applicationContext.getBean(CompositeEthereumListener.class));
     }
 
     @Bean(name = "/")
