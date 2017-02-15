@@ -5,7 +5,7 @@ import org.bouncycastle.util.encoders.Hex;
 import org.ethereum.config.DefaultConfig;
 import org.ethereum.config.SystemProperties;
 import org.ethereum.config.blockchain.FrontierConfig;
-import org.ethereum.config.net.AbstractNetConfig;
+import org.ethereum.config.net.BaseNetConfig;
 import org.ethereum.core.Block;
 import org.ethereum.core.BlockchainImpl;
 import org.ethereum.core.ImportResult;
@@ -48,7 +48,7 @@ public class TestApplication {
      * bcRPC_API_Test.json at older revision requires older-style Frontier
      * signature verification (outdated test)
      */
-    public static class OldFrontierBCConfig extends AbstractNetConfig {
+    public static class OldFrontierBCConfig extends BaseNetConfig {
         public OldFrontierBCConfig() {
             add(0, new FrontierConfig() {
                 @Override

@@ -60,7 +60,7 @@ task stage {
     dependsOn bootRepackage
 }
 
-applicationDefaultJvmArgs = ["-server", "-Xss32m", "-Xmx4000M", "-XX:+UseCompressedOops", "-XX:+HeapDumpOnOutOfMemoryError", "-XX:-OmitStackTraceInFastThrow"]
+applicationDefaultJvmArgs = ["-server", "-Xss32m", "-Xmx1G", "-XX:+UseCompressedOops", "-XX:+HeapDumpOnOutOfMemoryError", "-XX:-OmitStackTraceInFastThrow"]
 bootRun {
     systemProperties = System.properties;
     if ( project.hasProperty('jvmArgs') ) {
